@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMART SAPA — Бастауыш білім сапасының цифрлық картасы</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ЖОҒАРҒЫ ҰРАН ЖОЛАҒЫ -->
+  <div class="slogan-bar">
+    <span class="slogan-badge">🌟 Платформа ұраны</span>
+    <span>«Мониторингтен — жеке қолдауға, жеке қолдаудан — нақты нәтижеге!»</span>
+  </div>
+
+  <!-- ХЕДЕР ЖӘНЕ НАВИГАЦИЯ -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="header-top">
+        <div class="brand">
+          <div class="brand-logo" aria-label="SMART SAPA логотипі">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+              <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+              <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+              <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1>SMART SAPA</h1>
+            <p>Бастауыш білім сапасының цифрлық картасы</p>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button class="btn btn-demo" onclick="triggerJuryDemoMode()">
+            🚀 Демо режим (Таныстырылым)
+          </button>
+          <button class="btn btn-primary" onclick="openAddStudentModal()">
+            ➕ Оқушы / Диагностика қосу
+          </button>
+          <button class="btn btn-outline" onclick="resetDemoData()" title="Бастапқы деректерді қалпына келтіру">
+            🔄 Қалпына келтіру
+          </button>
+        </div>
+      </div>
+
+      <!-- 6 НЕГІЗГІ МОДУЛЬ НАВИГАЦИЯСЫ -->
+      <nav class="main-nav" aria-label="Негізгі мәзір">
+        <button class="nav-btn active" data-target="sec-dashboard" onclick="switchSection('sec-dashboard')">
+          🏠 1. Басты бет (Басқару панелі)
+        </button>
+        <button class="nav-btn" data-target="sec-monitoring" onclick="switchSection('sec-monitoring')">
+          📊 2. 1-4 Сыныптар мониторингі
+        </button>
+        <button class="nav-btn" data-target="sec-traffic" onclick="switchSection('sec-traffic')">
+          🚦 3. Білім бағдаршамы (Диагностика)
+        </button>
+        <button class="nav-btn" data-target="sec-gaps" onclick="switchSection('sec-gaps')">
+          🧭 4. Оқу олқылықтарының навигаторы
+        </button>
+        <button class="nav-btn" data-target="sec-passport" onclick="switchSection('sec-passport')">
+          🌟 5. Өсу траекториясы (Оқушы карточкасы)
+        </button>
+        <button class="nav-btn" data-target="sec-management" onclick="switchSection('sec-management')">
+          👩‍💼 6. Басқарушылық шешімдер
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- НЕГІЗГІ КОНТЕНТ АЙМАҒЫ -->
+  <main class="main-content">
+
+    <!-- СЫНЫП БУЫНЫН АУЫСТЫРУ БАРЫ (1-4 СЫНЫПТАР) -->
+    <div class="grade-switcher-bar">
+      <div class="grade-switcher-info">
+        <h2>🎒 <span id="currentGradeTitle">3-сынып буыны (Негізгі пәндік құзыреттіліктер)</span></h2>
+        <p>Сынып параллелін таңдаңыз — барлық KPI, «Білім бағдаршамы» және сынып сапасы интерактивті түрде жаңарады</p>
+      </div>
+      <div class="grade-buttons">
+        <button class="grade-btn" data-grade="1" onclick="selectGrade(1)">🌱 1-сынып</button>
+        <button class="grade-btn" data-grade="2" onclick="selectGrade(2)">📘 2-сынып</button>
+        <button class="grade-btn active" data-grade="3" onclick="selectGrade(3)">🚀 3-сынып</button>
+        <button class="grade-btn" data-grade="4" onclick="selectGrade(4)">🎓 4-сынып</button>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         1-БӨЛІМ: БАСТЫ БЕТ — БАСҚАРУ ПАНЕЛІ (DASHBOARD)
+    ========================================================== -->
+    <section id="sec-dashboard" class="section-view active">
+      <!-- ЖОҒАРҒЫ ВИЗУАЛДЫ KPI КАРТОЧКАЛАРЫ -->
+      <div class="kpi-grid">
+        <div class="kpi-card kpi-quality">
+          <div class="kpi-info">
+            <span class="kpi-label">Білім сапасы (Буын бойынша)</span>
+            <div class="kpi-value" id="kpiQuality">74%</div>
+            <span class="kpi-sub pill-green">🎯 Мақсатты меже: 75%+</span>
+          </div>
+          <div class="kpi-icon-box" style="background:var(--primary-blue-light); color:var(--primary-blue);">
+            📈
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-growth">
+          <div class="kpi-info">
+            <span class="kpi-label">Өсу динамикасы (Тоқсандық)</span>
+            <div class="kpi-value" id="kpiGrowth" style="color:#048A65;">+8%</div>
+            <span class="kpi-sub pill-green">🚀 Тұрақты оң серпін</span>
+          </div>
+          <div class="kpi-icon-box" style="background:var(--bright-green-light); color:#048A65;">
+            🌱
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-support">
+          <div class="kpi-info">
+            <span class="kpi-label">Жеке қолдауды қажет ететіндер</span>
+            <div class="kpi-value" id="kpiSupport" style="color:var(--coral-red);">11 оқушы</div>
+            <span class="kpi-sub pill-red">🤝 Жеке маршрут бекітілген</span>
+          </div>
+          <div class="kpi-icon-box" style="background:var(--coral-red-light); color:var(--coral-red);">
+            🛟
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-stars">
+          <div class="kpi-info">
+            <span class="kpi-label">«Жұлдызды Академия» қоры</span>
+            <div class="kpi-value" id="kpiStars" style="color:#D97706;">640 ⭐</div>
+            <span class="kpi-sub pill-yellow">🏆 Мотивациялық индекс</span>
+          </div>
+          <div class="kpi-icon-box" style="background:var(--soft-yellow-light); color:#D97706;">
+            🏅
+          </div>
+        </div>
+      </div>
+
+      <!-- СЫНЫПТАР БОЙЫНША БІЛІМ САПАСЫ КАРТОЧКАЛАРЫ -->
+      <div class="block-header">
+        <div class="block-title">🏫 Сыныптар бойынша білім сапасының картасы (Карточканы басып талдауды ашыңыз)</div>
+        <button class="btn btn-outline" onclick="switchSection('sec-monitoring')">Барлық 1–4 сыныптар кестесі →</button>
+      </div>
+      <div class="class-cards-grid" id="dashboardClassGrid"></div>
+
+      <!-- БАСТЫ БЕТТЕГІ «БІЛІМ БАҒДАРШАМЫ» ЖЕДЕЛ ШОЛУЫ -->
+      <div class="block-header">
+        <div class="block-title">🚦 «Білім бағдаршамы»: Негізгі дағдылар диагностикасы</div>
+        <button class="btn btn-outline" onclick="switchSection('sec-traffic')">Толық диагностикалық модульге өту →</button>
+      </div>
+      <div class="diagnostic-grid" id="dashboardQuickTraffic"></div>
+    </section>
+
+    <!-- =========================================================
+         2-БӨЛІМ: 1-4 СЫНЫПТАР МОНИТОРИНГІ
+    ========================================================== -->
+    <section id="sec-monitoring" class="section-view">
+      <div class="block-header">
+        <div class="block-title">📊 1–4 Сыныптар бойынша кешенді сапа мониторингі</div>
+        <span class="traffic-pill pill-green">Жалпы бастауыш буын: 354 оқушы</span>
+      </div>
+
+      <div class="data-table-wrapper" style="margin-bottom:24px;">
+        <table class="smart-table">
+          <thead>
+            <tr>
+              <th>Сынып параллелі</th>
+              <th>Оқушы саны</th>
+              <th>Орташа білім сапасы</th>
+              <th>Өсу динамикасы</th>
+              <th>Жеке қолдауда</th>
+              <th>Сыныптар бөлінісіндегі көрсеткіш</th>
+              <th>Әрекет</th>
+            </tr>
+          </thead>
+          <tbody id="allGradesComparisonBody"></tbody>
+        </table>
+      </div>
+
+      <div class="management-grid">
+        <div class="mgmt-card">
+          <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:12px;">🎯 Пәндер бойынша орташа меңгеру көрсеткіші</h3>
+          <div style="display:flex; flex-direction:column; gap:14px;">
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.86rem; font-weight:700;">
+                <span>📖 Әдебиеттік оқу / Ана тілі (Оқылым)</span>
+                <span style="color:#048A65;">84% (Жоғары)</span>
+              </div>
+              <div class="progress-track"><div class="progress-fill fill-green" style="width:84%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.86rem; font-weight:700;">
+                <span>✍️ Қазақ тілі (Грамматика және жазылым)</span>
+                <span style="color:#B27B00;">76% (Тұрақты)</span>
+              </div>
+              <div class="progress-track"><div class="progress-fill fill-yellow" style="width:76%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.86rem; font-weight:700;">
+                <span>🔢 Математика (Логика және мәтіндік есептер)</span>
+                <span style="color:var(--coral-red);">71% (Назарда)</span>
+              </div>
+              <div class="progress-track"><div class="progress-fill fill-red" style="width:71%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.86rem; font-weight:700;">
+                <span>🌍 Жаратылыстану және Дүниетану</span>
+                <span style="color:#048A65;">82% (Жоғары)</span>
+              </div>
+              <div class="progress-track"><div class="progress-fill fill-green" style="width:82%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mgmt-card">
+          <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:12px;">💡 Мониторингтің басты қағидаты</h3>
+          <div class="decision-item">
+            <div style="font-size:1.5rem;">🛡️</div>
+            <div>
+              <strong style="font-size:0.9rem;">Жазалау емес — дер кезінде қолдау</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
+                Цифрлық карта оқушыларды бір-бірімен салыстырып рейтинг жасамайды, әр баланың кешегі нәтижесімен бүгінгі жетістігін салыстырады.
+              </p>
+            </div>
+          </div>
+          <div class="decision-item" style="border-left-color:var(--bright-green);">
+            <div style="font-size:1.5rem;">🔁</div>
+            <div>
+              <strong style="font-size:0.9rem;">Әр 2 апталық микро-диагностика</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
+                Тоқсан соңын күтпей, БЖБ алдында олқылықты ерте анықтап, «Білім бағдаршамы» арқылы түзету жаттығуын ұсынады.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         3-БӨЛІМ: «БІЛІМ БАҒДАРШАМЫ» МОДУЛІ (ДИАГНОСТИКАЛЫҚ КАРТА)
+    ========================================================== -->
+    <section id="sec-traffic" class="section-view">
+      <div class="traffic-banner">
+        <div>
+          <h2 style="font-size:1.4rem; font-weight:800; margin-bottom:6px;">🚦 «Білім бағдаршамы» диагностикалық матрицасы</h2>
+          <p style="font-size:0.88rem; opacity:0.9; max-width:700px;">
+            Әр дағды үш түсті индикатормен белгіленеді: <strong>Жасыл</strong> — шығармашылық дамыту, <strong>Сары</strong> — бекіту жаттығуы, <strong>Қызыл</strong> — жеке қолдау жоспары.
+          </p>
+        </div>
+        <div class="traffic-lights-visual">
+          <div class="light-circle green" title="Жоғары деңгей">🟢</div>
+          <div class="light-circle yellow" title="Орташа деңгей">🟡</div>
+          <div class="light-circle red" title="Қолдау қажет">🔴</div>
+        </div>
+      </div>
+
+      <div class="filter-tabs">
+        <button class="filter-chip active" data-level="all" onclick="filterTraffic('all')">Барлық дағдылар</button>
+        <button class="filter-chip" data-level="green" onclick="filterTraffic('green')">🟢 Жасыл (Толық меңгерген → Дамыту)</button>
+        <button class="filter-chip" data-level="yellow" onclick="filterTraffic('yellow')">🟡 Сары (Бекітуді қажет етеді → Жаттығу)</button>
+        <button class="filter-chip" data-level="red" onclick="filterTraffic('red')">🔴 Қызыл (Қиындық бар → Жеке жоспар)</button>
+      </div>
+
+      <div class="diagnostic-grid" id="trafficDiagnosticGrid"></div>
+    </section>
+
+    <!-- =========================================================
+         4-БӨЛІМ: «ОҚУ ОЛҚЫЛЫҚТАРЫНЫҢ НАВИГАТОРЫ» МОДУЛІ
+    ========================================================== -->
+    <section id="sec-gaps" class="section-view">
+      <div class="block-header">
+        <div>
+          <h2 class="block-title">🧭 «Оқу олқылықтарының навигаторы» және әдістемелік банк</h2>
+          <p style="font-size:0.86rem; color:var(--text-muted); font-weight:600;">
+            Жиі кездесетін қиындықтар банкі және мұғалімге арналған дайын адаптивті интерактивті тапсырмалар
+          </p>
+        </div>
+      </div>
+
+      <div class="gaps-grid" id="learningGapsContainer"></div>
+    </section>
+
+    <!-- =========================================================
+         5-БӨЛІМ: «ӨСУ ТРАЕКТОРИЯСЫ» (ОҚУШЫНЫҢ ЖЕКЕ ПАСПОРТЫ)
+    ========================================================== -->
+    <section id="sec-passport" class="section-view">
+      <div class="block-header">
+        <div>
+          <h2 class="block-title">🌟 «Өсу траекториясы» — Оқушының жеке цифрлық паспорты</h2>
+          <p style="font-size:0.86rem; color:var(--text-muted); font-weight:600;">
+            Рейтинг үшін емес, оқушының өзіндік өсу динамикасын бақылау және «Жұлдызды Академия» геймификациясы
+          </p>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+          <label for="studentSelectDropdown" style="font-size:0.85rem; font-weight:800;">Оқушыны таңдау:</label>
+          <select id="studentSelectDropdown" class="form-control" style="width:auto; min-width:250px;" onchange="onStudentChange(this.value)"></select>
+          <button class="btn btn-demo" onclick="awardStarToCurrentStudent()">⭐ +5 Жұлдызша сыйлау</button>
+        </div>
+      </div>
+
+      <div class="passport-layout">
+        <!-- СОЛ ЖАҚ: ПРОФИЛЬ ЖӘНЕ ЖҰЛДЫЗДЫ АКАДЕМИЯ -->
+        <div class="student-profile-card">
+          <div class="student-avatar" id="passportAvatar">🚀</div>
+          <h3 style="font-size:1.3rem; font-weight:800;" id="passportName">Арман Асқарұлы</h3>
+          <p style="font-size:0.88rem; font-weight:700; color:var(--primary-blue); margin-top:2px;" id="passportGrade">3А сынып</p>
+
+          <div class="star-counter">
+            <span>⭐</span>
+            <span id="passportStars">145 Жұлдызша</span>
+          </div>
+
+          <div style="background:var(--bright-green-light); color:#055A43; padding:8px 12px; border-radius:12px; font-size:0.8rem; font-weight:700; margin-bottom:14px;" id="passportSupportStatus">
+            Оң динамика (Сарыдан -> Жасылға өтуде)
+          </div>
+
+          <h4 style="font-size:0.92rem; font-weight:800; text-align:left; margin-top:10px;">🏅 «Жұлдызды Академия» төсбелгілері:</h4>
+          <div class="badges-grid" id="passportBadgesGrid"></div>
+        </div>
+
+        <!-- ОҢ ЖАҚ: ПРОГРЕСС-БАРЛАР САЛЫСТЫРУЫ -->
+        <div class="trajectory-details">
+          <div class="comparison-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
+              <h3 style="font-size:1.15rem; font-weight:800;">📈 Бастапқы және қазіргі нәтижелер динамикасы</h3>
+              <span class="traffic-pill pill-green">Жеке қолдау нәтижесі</span>
+            </div>
+            <div id="passportSkillsCompare"></div>
+          </div>
+
+          <div class="comparison-card" style="border-left: 6px solid var(--soft-yellow);">
+            <h4 style="font-size:1rem; font-weight:800; margin-bottom:8px;">👩‍🏫 Педагог-куратордың қорытындысы мен ұсынымы:</h4>
+            <p style="font-size:0.9rem; font-weight:600; color:var(--text-dark);" id="passportMentorNote"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         6-БӨЛІМ: ДИРЕКТОР ОРЫНБАСАРЫНА АРНАЛҒАН «БАСҚАРУШЫЛЫҚ ШЕШІМДЕР ПАНЕЛІ»
+    ========================================================== -->
+    <section id="sec-management" class="section-view">
+      <div class="block-header">
+        <div>
+          <h2 class="block-title">👩‍💼 Директордың оқу ісі жөніндегі орынбасарына арналған «Басқарушылық шешімдер панелі»</h2>
+          <p style="font-size:0.86rem; color:var(--text-muted); font-weight:600;">
+            Мектепшілік әдістемелік талдау, автоматты педкеңес ұсыныстары және атаулы әдістемелік қолдау картасы
+          </p>
+        </div>
+        <button class="btn btn-primary" onclick="showToast('📄 Тоқсандық аналитикалық есеп дайындалды!'); window.print();">
+          🖨️ Аналитикалық есепті басып шығару
+        </button>
+      </div>
+
+      <div class="management-grid">
+        <div class="mgmt-card">
+          <h3 style="font-size:1.12rem; font-weight:800; margin-bottom:14px;">📌 Автоматты түрде генерацияланған әдістемелік шешімдер</h3>
+
+          <div class="decision-item" style="border-left-color:var(--coral-red);">
+            <div style="font-size:1.5rem;">🚨</div>
+            <div>
+              <strong style="font-size:0.92rem;">1. 2Б және 3Б сыныптарына математикадан атаулы әдістемелік десант</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
+                Диагностика бойынша «Екі амалмен мәтіндік есеп шығару» дағдысы 63–64% көрсеткіште. Әдістемелік бірлестік отырысында сызбамен модельдеу шеберлік сағатын өткізу ұсынылады.
+              </p>
+            </div>
+          </div>
+
+          <div class="decision-item" style="border-left-color:var(--soft-yellow);">
+            <div style="font-size:1.5rem;">🤝</div>
+            <div>
+              <strong style="font-size:0.92rem;">2. Lesson Study (Сабақты зерттеу) фокус-тобын құру</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
+                3А сынып мұғалімі Әсел Мұратқызының (82% сапа) оқылым сауаттылығы бойынша озық тәжірибесін 3Ә және 3Б сыныптарына тарату, өзара сабаққа қатысу кестесін бекіту.
+              </p>
+            </div>
+          </div>
+
+          <div class="decision-item" style="border-left-color:var(--bright-green);">
+            <div style="font-size:1.5rem;">🎓</div>
+            <div>
+              <strong style="font-size:0.92rem;">3. 4-сыныптарда ББЖМ-ге (Білім алушылардың білім жетістіктерінің мониторингі) дайындық</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
+                Инфографика мен кестелік мәтіндерді салыстырмалы талдау бойынша апталық 20 минуттық функционалдық сауаттылық практикумын енгізу.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mgmt-card">
+          <h3 style="font-size:1.12rem; font-weight:800; margin-bottom:14px;">📊 Мектепшілік әдістемелік қолдау матрицасы</h3>
+          <div class="data-table-wrapper" style="padding:0; box-shadow:none;">
+            <table class="smart-table" style="min-width:100%;">
+              <thead>
+                <tr>
+                  <th>Фокус сынып / Пән</th>
+                  <th>Анықталған мәселе</th>
+                  <th>Басқарушылық шешім</th>
+                  <th>Мерзімі</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>3Б сыныбы</strong><br/><span style="font-size:0.75rem; color:var(--text-muted);">Математика</span></td>
+                  <td>Кестелік көбейту және есеп шарты (66%)</td>
+                  <td><span class="traffic-pill pill-red">Жеке қолдау + Менторлық</span></td>
+                  <td>Апта сайын</td>
+                </tr>
+                <tr>
+                  <td><strong>2Б сыныбы</strong><br/><span style="font-size:0.75rem; color:var(--text-muted);">Математика</span></td>
+                  <td>Құрама есептерді модельдеу (69%)</td>
+                  <td><span class="traffic-pill pill-yellow">Коучинг және тренажер</span></td>
+                  <td>2 аптада 1 рет</td>
+                </tr>
+                <tr>
+                  <td><strong>1Б сыныбы</strong><br/><span style="font-size:0.75rem; color:var(--text-muted);">Ана тілі</span></td>
+                  <td>Жазу каллиграфиясы мен дыбыстық талдау</td>
+                  <td><span class="traffic-pill pill-yellow">Ата-анамен серіктестік</span></td>
+                  <td>Тұрақты</td>
+                </tr>
+                <tr>
+                  <td><strong>4А, 3А сыныптары</strong><br/><span style="font-size:0.75rem; color:var(--text-muted);">Оқу сауаттылығы</span></td>
+                  <td>Жоғары динамика (82%–86%)</td>
+                  <td><span class="traffic-pill pill-green">Іс-тәжірибені тарату</span></td>
+                  <td>Тоқсан соңы</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- МОДАЛЬДЫ ТЕРЕЗЕ (ДИАГНОСТИКА, ЖЕКЕ ЖОСПЫР ЖӘНЕ ОҚУШЫ ҚОСУ) -->
+  <div class="modal-overlay" id="appModal" onclick="if(event.target === this) closeModal()">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()" aria-label="Жабу">✕</button>
+      <div id="dynamicModalBody"></div>
+    </div>
+  </div>
+
+  <!-- ХАБАРЛАМАЛАР КОНТЕЙНЕРІ (TOAST) -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ФУТЕР -->
+  <footer class="app-footer">
+    <p><strong>SMART SAPA: Бастауыш білім сапасының цифрлық картасы</strong> • «Мониторингтен — жеке қолдауға, жеке қолдаудан — нақты нәтижеге!»</p>
+    <p style="margin-top:4px; font-size:0.78rem;">Бастауыш мектеп мұғалімдеріне, оқушыларға және мектеп әкімшілігіне арналған интерактивті цифрлық экожүйе</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

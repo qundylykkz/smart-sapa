@@ -1,0 +1,2116 @@
+﻿<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMART SAPA — Бастауыш білім сапасының цифрлық картасы</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+
+:root {
+  --primary-blue: #4A90E2;
+  --primary-blue-light: #EAF3FC;
+  --soft-yellow: #FFD166;
+  --soft-yellow-light: #FFF8E6;
+  --bright-green: #06D6A0;
+  --bright-green-light: #E6FBF5;
+  --coral-red: #EF476F;
+  --coral-red-light: #FDECEF;
+  --teal-accent: #118AB2;
+  --teal-accent-light: #E7F5FA;
+  --purple-playful: #8338EC;
+  --purple-light: #F3EBFF;
+  --bg-main: #F4F8FB;
+  --card-bg: #FFFFFF;
+  --text-dark: #1E293B;
+  --text-muted: #64748B;
+  --border-soft: #E2E8F0;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-pill: 999px;
+  --shadow-soft: 0 10px 30px rgba(17, 138, 178, 0.08);
+  --shadow-hover: 0 16px 36px rgba(74, 144, 226, 0.16);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background: var(--bg-main);
+  background-image: 
+    radial-gradient(circle at 8% 12%, rgba(255, 209, 102, 0.18) 0%, transparent 25%),
+    radial-gradient(circle at 92% 18%, rgba(6, 214, 160, 0.14) 0%, transparent 28%),
+    radial-gradient(circle at 85% 85%, rgba(74, 144, 226, 0.15) 0%, transparent 30%);
+  color: var(--text-dark);
+  min-height: 100vh;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* TOP SLOGAN BAR */
+.slogan-bar {
+  background: linear-gradient(90deg, var(--teal-accent), var(--primary-blue), var(--bright-green));
+  color: #fff;
+  text-align: center;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.slogan-badge {
+  background: var(--soft-yellow);
+  color: #1E293B;
+  padding: 3px 12px;
+  border-radius: var(--radius-pill);
+  font-weight: 800;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+}
+
+/* HEADER & NAVIGATION */
+.app-header {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border-bottom: 2px solid rgba(74, 144, 226, 0.12);
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 16px 24px 12px;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--primary-blue), var(--bright-green));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(6, 214, 160, 0.3);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.brand-logo::after {
+  content: "✨";
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  font-size: 16px;
+}
+
+.brand-text h1 {
+  font-size: 1.55rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--teal-accent), var(--primary-blue), var(--coral-red));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+
+.brand-text p {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: none;
+  cursor: pointer;
+  padding: 10px 18px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 0.86rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-blue), var(--teal-accent));
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(74, 144, 226, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(74, 144, 226, 0.4);
+}
+
+.btn-demo {
+  background: var(--soft-yellow);
+  color: #1E293B;
+  box-shadow: 0 6px 16px rgba(255, 209, 102, 0.35);
+}
+
+.btn-demo:hover {
+  transform: translateY(-2px);
+  background: #ffc53d;
+}
+
+.btn-outline {
+  background: #fff;
+  color: var(--teal-accent);
+  border: 2px solid var(--teal-accent-light);
+}
+
+.btn-outline:hover {
+  border-color: var(--teal-accent);
+  background: var(--teal-accent-light);
+}
+
+/* NAV PILLS */
+.main-nav {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scrollbar-width: thin;
+}
+
+.nav-btn {
+  background: var(--bg-main);
+  color: var(--text-muted);
+  border: 2px solid transparent;
+  padding: 10px 16px;
+  border-radius: 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.nav-btn:hover {
+  background: var(--primary-blue-light);
+  color: var(--primary-blue);
+  transform: translateY(-1px);
+}
+
+.nav-btn.active {
+  background: var(--primary-blue);
+  color: #fff;
+  box-shadow: 0 6px 15px rgba(74, 144, 226, 0.3);
+}
+
+/* MAIN CONTAINER */
+.main-content {
+  max-width: 1400px;
+  margin: 24px auto 60px;
+  padding: 0 24px;
+}
+
+/* HERO / GRADE FILTER BAR */
+.grade-switcher-bar {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 18px 24px;
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  border: 2px solid rgba(74, 144, 226, 0.12);
+}
+
+.grade-switcher-info h2 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.grade-switcher-info p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.grade-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.grade-btn {
+  background: var(--bg-main);
+  border: 2px solid var(--border-soft);
+  padding: 10px 20px;
+  border-radius: 16px;
+  font-weight: 800;
+  font-size: 0.92rem;
+  color: var(--text-dark);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.grade-btn:hover {
+  border-color: var(--primary-blue);
+  transform: translateY(-2px);
+}
+
+.grade-btn.active {
+  background: linear-gradient(135deg, var(--soft-yellow), #FFB703);
+  border-color: #FFB703;
+  color: #1E293B;
+  box-shadow: 0 8px 18px rgba(255, 209, 102, 0.45);
+  transform: scale(1.03);
+}
+
+/* SECTIONS */
+.section-view {
+  display: none;
+  animation: fadeIn 0.35s ease;
+}
+
+.section-view.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* KPI CARDS */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.kpi-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  align-items: center;
+   justify-content: space-between;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+  border-bottom: 5px solid var(--primary-blue);
+}
+
+.kpi-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.kpi-card.kpi-quality { border-bottom-color: var(--primary-blue); }
+.kpi-card.kpi-growth { border-bottom-color: var(--bright-green); }
+.kpi-card.kpi-support { border-bottom-color: var(--coral-red); }
+.kpi-card.kpi-stars { border-bottom-color: var(--soft-yellow); }
+
+.kpi-info span.kpi-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.kpi-value {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1.1;
+}
+
+.kpi-sub {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.kpi-icon-box {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.9rem;
+  flex-shrink: 0;
+}
+
+/* SECTION HEADERS */
+.block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.block-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* CLASS QUALITY CARDS */
+.class-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.class-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition);
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.class-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--primary-blue);
+}
+
+.class-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.class-badge {
+  font-size: 1.15rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.traffic-pill {
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pill-green { background: var(--bright-green-light); color: #048A65; }
+.pill-yellow { background: var(--soft-yellow-light); color: #B27B00; }
+.pill-red { background: var(--coral-red-light); color: #C81E45; }
+
+.progress-track {
+  width: 100%;
+  height: 14px;
+  background: var(--bg-main);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  margin: 12px 0;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fill-green { background: linear-gradient(90deg, #06D6A0, #04B486); }
+.fill-yellow { background: linear-gradient(90deg, #FFD166, #F4A261); }
+.fill-red { background: linear-gradient(90deg, #EF476F, #8338EC); }
+
+.class-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+
+/* TRAFFIC LIGHT MODULE (БІЛІМ БАҒДАРШАМЫ) */
+.traffic-banner {
+  background: linear-gradient(135deg, #1E293B, #0F172A);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.traffic-lights-visual {
+  display: flex;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 12px 20px;
+  border-radius: var(--radius-pill);
+}
+
+.light-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.light-circle.green { background: var(--bright-green); box-shadow: 0 0 16px var(--bright-green); color: #053B2C; }
+.light-circle.yellow { background: var(--soft-yellow); box-shadow: 0 0 16px var(--soft-yellow); color: #4A3500; }
+.light-circle.red { background: var(--coral-red); box-shadow: 0 0 16px var(--coral-red); color: #fff; }
+
+.filter-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-chip {
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--border-soft);
+  background: #fff;
+  font-weight: 700;
+  font-size: 0.84rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.filter-chip.active {
+  background: var(--teal-accent);
+  color: #fff;
+  border-color: var(--teal-accent);
+}
+
+.diagnostic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.diag-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-soft);
+  border-left: 7px solid var(--bright-green);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.diag-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.diag-card.level-green { border-left-color: var(--bright-green); }
+.diag-card.level-yellow { border-left-color: var(--soft-yellow); }
+.diag-card.level-red { border-left-color: var(--coral-red); }
+
+.diag-action-box {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--bg-main);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+/* LEARNING GAPS NAVIGATOR */
+.gaps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 22px;
+}
+
+.gap-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-soft);
+  border-top: 6px solid var(--teal-accent);
+  transition: var(--transition);
+}
+
+.gap-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.gap-subject-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.76rem;
+  font-weight: 800;
+  background: var(--primary-blue-light);
+  color: var(--primary-blue);
+  margin-bottom: 10px;
+}
+
+.gap-task-box {
+  background: var(--soft-yellow-light);
+  border: 2px dashed var(--soft-yellow);
+  border-radius: 14px;
+  padding: 14px;
+  margin: 14px 0;
+  font-size: 0.86rem;
+}
+
+/* STUDENT TRAJECTORY PASSPORT */
+.passport-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 980px) {
+  .passport-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.student-profile-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+  border-top: 6px solid var(--primary-blue);
+}
+
+.student-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  margin: 0 auto 14px;
+  background: linear-gradient(135deg, var(--soft-yellow), var(--bright-green));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.8rem;
+  box-shadow: 0 8px 20px rgba(6, 214, 160, 0.25);
+}
+
+.star-counter {
+  background: linear-gradient(90deg, #FFF3B0, #FFD166);
+  color: #5C4000;
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 14px 0;
+  font-size: 1rem;
+}
+
+.badges-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.badge-item {
+  background: var(--bg-main);
+  padding: 12px 8px;
+  border-radius: 14px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border: 2px solid transparent;
+  transition: var(--transition);
+}
+
+.badge-item.earned {
+  background: var(--bright-green-light);
+  border-color: var(--bright-green);
+  color: #055A43;
+}
+
+.trajectory-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.comparison-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-soft);
+}
+
+.skill-compare-row {
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--border-soft);
+}
+
+.skill-compare-row:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.dual-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.bar-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.bar-line span.bar-tag {
+  width: 110px;
+  color: var(--text-muted);
+}
+
+/* DEPUTY DIRECTOR PANEL */
+.management-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 22px;
+  margin-bottom: 24px;
+}
+
+.mgmt-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-soft);
+}
+
+.decision-item {
+  display: flex;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 14px;
+  background: var(--bg-main);
+  margin-bottom: 12px;
+  border-left: 5px solid var(--teal-accent);
+}
+
+/* TABLE STYLING */
+.data-table-wrapper {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-soft);
+  overflow-x: auto;
+}
+
+.smart-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 680px;
+}
+
+.smart-table th {
+  text-align: left;
+  padding: 14px;
+  background: var(--bg-main);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.smart-table td {
+  padding: 14px;
+  border-bottom: 1px solid var(--border-soft);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.smart-table tr:hover td {
+  background: var(--primary-blue-light);
+}
+
+/* MODAL WINDOW */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(5px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-overlay.open {
+  display: flex;
+  animation: fadeIn 0.25s ease;
+}
+
+.modal-box {
+  background: var(--card-bg);
+  border-radius: 24px;
+  max-width: 650px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: var(--bg-main);
+  font-size: 1.2rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 2px solid var(--border-soft);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+}
+
+/* TOAST NOTIFICATION */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  background: #1E293B;
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-left: 6px solid var(--bright-green);
+  animation: fadeIn 0.3s ease;
+}
+
+/* FOOTER */
+.app-footer {
+  text-align: center;
+  padding: 28px 16px;
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  font-weight: 600;
+  border-top: 1px solid var(--border-soft);
+  background: #fff;
+}
+
+@media (max-width: 640px) {
+  .header-container { padding: 12px 16px; }
+  .main-content { padding: 0 16px; }
+  .brand-text h1 { font-size: 1.25rem; }
+  .kpi-value { font-size: 1.8rem; }
+}
+
+</style>
+</head>
+<body>
+
+  <!-- ЖОҒАРҒЫ ҰРАН ЖОЛАҒЫ -->
+  <div class="slogan-bar">
+    <span class="slogan-badge">🌟 Платформа ұраны</span>
+    <span>«Мониторингтен — жеке қолдауға, жеке қолдаудан — нақты нәтижеге!»</span>
+  </div>
+
+  <!-- ХЕДЕР ЖӘНЕ НАВИГАЦИЯ -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="header-top">
+        <div class="brand">
+          <div class="brand-logo" aria-label="SMART SAPA логотипі">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+              <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+              <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+              <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1>SMART SAPA</h1>
+            <p>Бастауыш білім сапасының цифрлық картасы</p>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button class="btn btn-demo" onclick="triggerJuryDemoMode()">
+            🚀 Демо режим (Таныстырылым)
+          </button>
+          <button class="btn btn-primary" onclick="openAddStudentModal()">
+            ➕ Оқушы / Диагностика қосу
+          </button>
+          <button class="btn btn-outline" onclick="resetDemoData()" title="Бастапқы деректерді қалпына келтіру">
+            🔄 Қалпына келтіру
+          </button>
+        </div>
+      </div>
+
+      <!-- 6 НЕГІЗГІ МОДУЛЬ НАВИГАЦИЯСЫ -->
+      <nav class="main-nav" aria-label="Негізгі мәзір">
+        <button class="nav-btn active" data-target="sec-dashboard" onclick="switchSection('sec-dashboard')">
+          🏠 1. Басты бет (Басқару панелі)
+        </button>
+        <button class="nav-btn" data-target="sec-monitoring" onclick="switchSection('sec-monitoring')">
+          📊 2. 1-4 Сыныптар мониторингі
+        </button>
+        <button class="nav-btn" data-target="sec-traffic" onclick="switchSection('sec-traffic')">
+          🚦 3. Білім бағдаршамы (Диагностика)
+        </button>
+        <button class="nav-btn" data-target="sec-gaps" onclick="switchSection('sec-gaps')">
+          🧭 4. Оқу олқылықтарының навигаторы
+        </button>
+        <button class="nav-btn" data-target="sec-passport" onclick="switchSection('sec-passport')">
+          🌟 5. Өсу траекториясы (Оқушы карточкасы)
+        </button>
+        <button class="nav-btn" data-target="sec-management" onclick="switchSection('sec-management')">
+          👩‍💼 6. Басқарушылық шешімдер
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- НЕГІЗГІ КОНТЕНТ АЙМАҒЫ -->
+  <main class="main-content">
+
+    <!-- СЫНЫП БУЫНЫН АУЫСТЫРУ БАРЫ (1-4 СЫНЫПТАР) -->
+    <div class="grade-switcher-bar">
+      <div class="grade-switcher-info">
+        <h2>🎒 <span id="currentGradeTitle">3-сынып буыны (Негізгі пәндік құзыреттіліктер)</span></h2>
+        <p>Сынып параллелін таңдаңыз — барлық KPI, «Білім бағдаршамы» және сынып сапасы интерактивті түрде жаңарады</p>
+      </div>
+      <div class="grade-buttons">
+        <button class="grade-btn" data-grade="1" onclick="selectGrade(1)">🌱 1-сынып</button>
+        <button class="grade-btn" data-grade="2" onclick="selectGrade(2)">📘 2-сынып</button>
+        <button class="grade-btn active" data-grade="3" onclick="selectGrade(3)">🚀 3-сынып</button>
+        <button class="grade-btn" data-grade="4" onclick="selectGrade(4)">🎓 4-сынып</button>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         1-БӨЛІМ: БАСТЫ БЕТ — БАСҚАРУ ПАНЕЛІ (DASHBOARD)
+    ========================================================== -->
+    <section id="sec-dashboard" class="section-view active">
+      <!-- ЖОҒАРҒЫ ВИЗУАЛДЫ KPI КАРТОЧКАЛАРЫ -->
+      <div class="kpi-grid">
+        <div class="kpi-card kpi-quality">
+          <div class="kpi-info">
+            <span class="kpi-label">Білім сапасы (Буын бойынша)</span>
+            <div class="kpi-value" id="kpiQuality">74%</div>
+            <span class="kpi-sub pill-green">🎯 Мақсатты меже: 75%+</span>
+          </div>
+          <div class="kpi-icon-box" style="background:var(--primary-blue-light); color:var(--primary-blue);">
+            📈
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-growth">
+          <div class="kpi-info">
+            <span class="kpi-label">Өсу динамикасы (Тоқсандық)</span>
+            <div class="kpi-value" id="kpiGrowth" style="color:#048A65;">+8%</div>
+            <span class="kpi-sub pill-green">🚀 Тұрақты оң серпін</span>
+          </div>
+          <div class="kpi-icon-box" style="background:var(--bright-green-light); color:#048A65;">
+            🌱
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-support">
+          <div class="kpi-info">
+            <span class="kpi-label">Жеке қолдауды қажет ететіндер</span>
+            <div class="kpi-value" id="kpiSupport" style="color:var(--coral-red);">11 оқушы</div>
+            <span class="kpi-sub pill-red">🤝 Жеке маршрут бекітілген</span>
+          </div>
+          <div class="kpi-icon-box" style="background:var(--coral-red-light); color:var(--coral-red);">
+            🛟
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-stars">
+          <div class="kpi-info">
+            <span class="kpi-label">«Жұлдызды Академия» қоры</span>
+            <div class="kpi-value" id="kpiStars" style="color:#D97706;">640 ⭐</div>
+            <span class="kpi-sub pill-yellow">🏆 Мотивациялық индекс</span>
+          </div>
+          <div class="kpi-icon-box" style="background:var(--soft-yellow-light); color:#D97706;">
+            🏅
+          </div>
+        </div>
+      </div>
+
+      <!-- СЫНЫПТАР БОЙЫНША БІЛІМ САПАСЫ КАРТОЧКАЛАРЫ -->
+      <div class="block-header">
+        <div class="block-title">🏫 Сыныптар бойынша білім сапасының картасы (Карточканы басып талдауды ашыңыз)</div>
+        <button class="btn btn-outline" onclick="switchSection('sec-monitoring')">Барлық 1–4 сыныптар кестесі →</button>
+      </div>
+      <div class="class-cards-grid" id="dashboardClassGrid"></div>
+
+      <!-- БАСТЫ БЕТТЕГІ «БІЛІМ БАҒДАРШАМЫ» ЖЕДЕЛ ШОЛУЫ -->
+      <div class="block-header">
+        <div class="block-title">🚦 «Білім бағдаршамы»: Негізгі дағдылар диагностикасы</div>
+        <button class="btn btn-outline" onclick="switchSection('sec-traffic')">Толық диагностикалық модульге өту →</button>
+      </div>
+      <div class="diagnostic-grid" id="dashboardQuickTraffic"></div>
+    </section>
+
+    <!-- =========================================================
+         2-БӨЛІМ: 1-4 СЫНЫПТАР МОНИТОРИНГІ
+    ========================================================== -->
+    <section id="sec-monitoring" class="section-view">
+      <div class="block-header">
+        <div class="block-title">📊 1–4 Сыныптар бойынша кешенді сапа мониторингі</div>
+        <span class="traffic-pill pill-green">Жалпы бастауыш буын: 354 оқушы</span>
+      </div>
+
+      <div class="data-table-wrapper" style="margin-bottom:24px;">
+        <table class="smart-table">
+          <thead>
+            <tr>
+              <th>Сынып параллелі</th>
+              <th>Оқушы саны</th>
+              <th>Орташа білім сапасы</th>
+              <th>Өсу динамикасы</th>
+              <th>Жеке қолдауда</th>
+              <th>Сыныптар бөлінісіндегі көрсеткіш</th>
+              <th>Әрекет</th>
+            </tr>
+          </thead>
+          <tbody id="allGradesComparisonBody"></tbody>
+        </table>
+      </div>
+
+      <div class="management-grid">
+        <div class="mgmt-card">
+          <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:12px;">🎯 Пәндер бойынша орташа меңгеру көрсеткіші</h3>
+          <div style="display:flex; flex-direction:column; gap:14px;">
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.86rem; font-weight:700;">
+                <span>📖 Әдебиеттік оқу / Ана тілі (Оқылым)</span>
+                <span style="color:#048A65;">84% (Жоғары)</span>
+              </div>
+              <div class="progress-track"><div class="progress-fill fill-green" style="width:84%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.86rem; font-weight:700;">
+                <span>✍️ Қазақ тілі (Грамматика және жазылым)</span>
+                <span style="color:#B27B00;">76% (Тұрақты)</span>
+              </div>
+              <div class="progress-track"><div class="progress-fill fill-yellow" style="width:76%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.86rem; font-weight:700;">
+                <span>🔢 Математика (Логика және мәтіндік есептер)</span>
+                <span style="color:var(--coral-red);">71% (Назарда)</span>
+              </div>
+              <div class="progress-track"><div class="progress-fill fill-red" style="width:71%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.86rem; font-weight:700;">
+                <span>🌍 Жаратылыстану және Дүниетану</span>
+                <span style="color:#048A65;">82% (Жоғары)</span>
+              </div>
+              <div class="progress-track"><div class="progress-fill fill-green" style="width:82%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mgmt-card">
+          <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:12px;">💡 Мониторингтің басты қағидаты</h3>
+          <div class="decision-item">
+            <div style="font-size:1.5rem;">🛡️</div>
+            <div>
+              <strong style="font-size:0.9rem;">Жазалау емес — дер кезінде қолдау</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
+                Цифрлық карта оқушыларды бір-бірімен салыстырып рейтинг жасамайды, әр баланың кешегі нәтижесімен бүгінгі жетістігін салыстырады.
+              </p>
+            </div>
+          </div>
+          <div class="decision-item" style="border-left-color:var(--bright-green);">
+            <div style="font-size:1.5rem;">🔁</div>
+            <div>
+              <strong style="font-size:0.9rem;">Әр 2 апталық микро-диагностика</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
+                Тоқсан соңын күтпей, БЖБ алдында олқылықты ерте анықтап, «Білім бағдаршамы» арқылы түзету жаттығуын ұсынады.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         3-БӨЛІМ: «БІЛІМ БАҒДАРШАМЫ» МОДУЛІ (ДИАГНОСТИКАЛЫҚ КАРТА)
+    ========================================================== -->
+    <section id="sec-traffic" class="section-view">
+      <div class="traffic-banner">
+        <div>
+          <h2 style="font-size:1.4rem; font-weight:800; margin-bottom:6px;">🚦 «Білім бағдаршамы» диагностикалық матрицасы</h2>
+          <p style="font-size:0.88rem; opacity:0.9; max-width:700px;">
+            Әр дағды үш түсті индикатормен белгіленеді: <strong>Жасыл</strong> — шығармашылық дамыту, <strong>Сары</strong> — бекіту жаттығуы, <strong>Қызыл</strong> — жеке қолдау жоспары.
+          </p>
+        </div>
+        <div class="traffic-lights-visual">
+          <div class="light-circle green" title="Жоғары деңгей">🟢</div>
+          <div class="light-circle yellow" title="Орташа деңгей">🟡</div>
+          <div class="light-circle red" title="Қолдау қажет">🔴</div>
+        </div>
+      </div>
+
+      <div class="filter-tabs">
+        <button class="filter-chip active" data-level="all" onclick="filterTraffic('all')">Барлық дағдылар</button>
+        <button class="filter-chip" data-level="green" onclick="filterTraffic('green')">🟢 Жасыл (Толық меңгерген → Дамыту)</button>
+        <button class="filter-chip" data-level="yellow" onclick="filterTraffic('yellow')">🟡 Сары (Бекітуді қажет етеді → Жаттығу)</button>
+        <button class="filter-chip" data-level="red" onclick="filterTraffic('red')">🔴 Қызыл (Қиындық бар → Жеке жоспар)</button>
+      </div>
+
+      <div class="diagnostic-grid" id="trafficDiagnosticGrid"></div>
+    </section>
+
+    <!-- =========================================================
+         4-БӨЛІМ: «ОҚУ ОЛҚЫЛЫҚТАРЫНЫҢ НАВИГАТОРЫ» МОДУЛІ
+    ========================================================== -->
+    <section id="sec-gaps" class="section-view">
+      <div class="block-header">
+        <div>
+          <h2 class="block-title">🧭 «Оқу олқылықтарының навигаторы» және әдістемелік банк</h2>
+          <p style="font-size:0.86rem; color:var(--text-muted); font-weight:600;">
+            Жиі кездесетін қиындықтар банкі және мұғалімге арналған дайын адаптивті интерактивті тапсырмалар
+          </p>
+        </div>
+      </div>
+
+      <div class="gaps-grid" id="learningGapsContainer"></div>
+    </section>
+
+    <!-- =========================================================
+         5-БӨЛІМ: «ӨСУ ТРАЕКТОРИЯСЫ» (ОҚУШЫНЫҢ ЖЕКЕ ПАСПОРТЫ)
+    ========================================================== -->
+    <section id="sec-passport" class="section-view">
+      <div class="block-header">
+        <div>
+          <h2 class="block-title">🌟 «Өсу траекториясы» — Оқушының жеке цифрлық паспорты</h2>
+          <p style="font-size:0.86rem; color:var(--text-muted); font-weight:600;">
+            Рейтинг үшін емес, оқушының өзіндік өсу динамикасын бақылау және «Жұлдызды Академия» геймификациясы
+          </p>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+          <label for="studentSelectDropdown" style="font-size:0.85rem; font-weight:800;">Оқушыны таңдау:</label>
+          <select id="studentSelectDropdown" class="form-control" style="width:auto; min-width:250px;" onchange="onStudentChange(this.value)"></select>
+          <button class="btn btn-demo" onclick="awardStarToCurrentStudent()">⭐ +5 Жұлдызша сыйлау</button>
+        </div>
+      </div>
+
+      <div class="passport-layout">
+        <!-- СОЛ ЖАҚ: ПРОФИЛЬ ЖӘНЕ ЖҰЛДЫЗДЫ АКАДЕМИЯ -->
+        <div class="student-profile-card">
+          <div class="student-avatar" id="passportAvatar">🚀</div>
+          <h3 style="font-size:1.3rem; font-weight:800;" id="passportName">Арман Асқарұлы</h3>
+          <p style="font-size:0.88rem; font-weight:700; color:var(--primary-blue); margin-top:2px;" id="passportGrade">3А сынып</p>
+
+          <div class="star-counter">
+            <span>⭐</span>
+            <span id="passportStars">145 Жұлдызша</span>
+          </div>
+
+          <div style="background:var(--bright-green-light); color:#055A43; padding:8px 12px; border-radius:12px; font-size:0.8rem; font-weight:700; margin-bottom:14px;" id="passportSupportStatus">
+            Оң динамика (Сарыдан -> Жасылға өтуде)
+          </div>
+
+          <h4 style="font-size:0.92rem; font-weight:800; text-align:left; margin-top:10px;">🏅 «Жұлдызды Академия» төсбелгілері:</h4>
+          <div class="badges-grid" id="passportBadgesGrid"></div>
+        </div>
+
+        <!-- ОҢ ЖАҚ: ПРОГРЕСС-БАРЛАР САЛЫСТЫРУЫ -->
+        <div class="trajectory-details">
+          <div class="comparison-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
+              <h3 style="font-size:1.15rem; font-weight:800;">📈 Бастапқы және қазіргі нәтижелер динамикасы</h3>
+              <span class="traffic-pill pill-green">Жеке қолдау нәтижесі</span>
+            </div>
+            <div id="passportSkillsCompare"></div>
+          </div>
+
+          <div class="comparison-card" style="border-left: 6px solid var(--soft-yellow);">
+            <h4 style="font-size:1rem; font-weight:800; margin-bottom:8px;">👩‍🏫 Педагог-куратордың қорытындысы мен ұсынымы:</h4>
+            <p style="font-size:0.9rem; font-weight:600; color:var(--text-dark);" id="passportMentorNote"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         6-БӨЛІМ: ДИРЕКТОР ОРЫНБАСАРЫНА АРНАЛҒАН «БАСҚАРУШЫЛЫҚ ШЕШІМДЕР ПАНЕЛІ»
+    ========================================================== -->
+    <section id="sec-management" class="section-view">
+      <div class="block-header">
+        <div>
+          <h2 class="block-title">👩‍💼 Директордың оқу ісі жөніндегі орынбасарына арналған «Басқарушылық шешімдер панелі»</h2>
+          <p style="font-size:0.86rem; color:var(--text-muted); font-weight:600;">
+            Мектепшілік әдістемелік талдау, автоматты педкеңес ұсыныстары және атаулы әдістемелік қолдау картасы
+          </p>
+        </div>
+        <button class="btn btn-primary" onclick="showToast('📄 Тоқсандық аналитикалық есеп дайындалды!'); window.print();">
+          🖨️ Аналитикалық есепті басып шығару
+        </button>
+      </div>
+
+      <div class="management-grid">
+        <div class="mgmt-card">
+          <h3 style="font-size:1.12rem; font-weight:800; margin-bottom:14px;">📌 Автоматты түрде генерацияланған әдістемелік шешімдер</h3>
+
+          <div class="decision-item" style="border-left-color:var(--coral-red);">
+            <div style="font-size:1.5rem;">🚨</div>
+            <div>
+              <strong style="font-size:0.92rem;">1. 2Б және 3Б сыныптарына математикадан атаулы әдістемелік десант</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
+                Диагностика бойынша «Екі амалмен мәтіндік есеп шығару» дағдысы 63–64% көрсеткіште. Әдістемелік бірлестік отырысында сызбамен модельдеу шеберлік сағатын өткізу ұсынылады.
+              </p>
+            </div>
+          </div>
+
+          <div class="decision-item" style="border-left-color:var(--soft-yellow);">
+            <div style="font-size:1.5rem;">🤝</div>
+            <div>
+              <strong style="font-size:0.92rem;">2. Lesson Study (Сабақты зерттеу) фокус-тобын құру</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
+                3А сынып мұғалімі Әсел Мұратқызының (82% сапа) оқылым сауаттылығы бойынша озық тәжірибесін 3Ә және 3Б сыныптарына тарату, өзара сабаққа қатысу кестесін бекіту.
+              </p>
+            </div>
+          </div>
+
+          <div class="decision-item" style="border-left-color:var(--bright-green);">
+            <div style="font-size:1.5rem;">🎓</div>
+            <div>
+              <strong style="font-size:0.92rem;">3. 4-сыныптарда ББЖМ-ге (Білім алушылардың білім жетістіктерінің мониторингі) дайындық</strong>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
+                Инфографика мен кестелік мәтіндерді салыстырмалы талдау бойынша апталық 20 минуттық функционалдық сауаттылық практикумын енгізу.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mgmt-card">
+          <h3 style="font-size:1.12rem; font-weight:800; margin-bottom:14px;">📊 Мектепшілік әдістемелік қолдау матрицасы</h3>
+          <div class="data-table-wrapper" style="padding:0; box-shadow:none;">
+            <table class="smart-table" style="min-width:100%;">
+              <thead>
+                <tr>
+                  <th>Фокус сынып / Пән</th>
+                  <th>Анықталған мәселе</th>
+                  <th>Басқарушылық шешім</th>
+                  <th>Мерзімі</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>3Б сыныбы</strong><br/><span style="font-size:0.75rem; color:var(--text-muted);">Математика</span></td>
+                  <td>Кестелік көбейту және есеп шарты (66%)</td>
+                  <td><span class="traffic-pill pill-red">Жеке қолдау + Менторлық</span></td>
+                  <td>Апта сайын</td>
+                </tr>
+                <tr>
+                  <td><strong>2Б сыныбы</strong><br/><span style="font-size:0.75rem; color:var(--text-muted);">Математика</span></td>
+                  <td>Құрама есептерді модельдеу (69%)</td>
+                  <td><span class="traffic-pill pill-yellow">Коучинг және тренажер</span></td>
+                  <td>2 аптада 1 рет</td>
+                </tr>
+                <tr>
+                  <td><strong>1Б сыныбы</strong><br/><span style="font-size:0.75rem; color:var(--text-muted);">Ана тілі</span></td>
+                  <td>Жазу каллиграфиясы мен дыбыстық талдау</td>
+                  <td><span class="traffic-pill pill-yellow">Ата-анамен серіктестік</span></td>
+                  <td>Тұрақты</td>
+                </tr>
+                <tr>
+                  <td><strong>4А, 3А сыныптары</strong><br/><span style="font-size:0.75rem; color:var(--text-muted);">Оқу сауаттылығы</span></td>
+                  <td>Жоғары динамика (82%–86%)</td>
+                  <td><span class="traffic-pill pill-green">Іс-тәжірибені тарату</span></td>
+                  <td>Тоқсан соңы</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- МОДАЛЬДЫ ТЕРЕЗЕ (ДИАГНОСТИКА, ЖЕКЕ ЖОСПЫР ЖӘНЕ ОҚУШЫ ҚОСУ) -->
+  <div class="modal-overlay" id="appModal" onclick="if(event.target === this) closeModal()">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()" aria-label="Жабу">✕</button>
+      <div id="dynamicModalBody"></div>
+    </div>
+  </div>
+
+  <!-- ХАБАРЛАМАЛАР КОНТЕЙНЕРІ (TOAST) -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ФУТЕР -->
+  <footer class="app-footer">
+    <p><strong>SMART SAPA: Бастауыш білім сапасының цифрлық картасы</strong> • «Мониторингтен — жеке қолдауға, жеке қолдаудан — нақты нәтижеге!»</p>
+    <p style="margin-top:4px; font-size:0.78rem;">Бастауыш мектеп мұғалімдеріне, оқушыларға және мектеп әкімшілігіне арналған интерактивті цифрлық экожүйе</p>
+  </footer>
+
+  <script>
+// SMART SAPA: Бастауыш білім сапасының цифрлық картасы — Негізгі JavaScript логикасы
+
+const STORAGE_KEY = 'smart_sapa_platform_data_v1';
+
+// Бастапқы демо деректер базасы (1-4 сыныптар)
+const defaultPlatformData = {
+  currentGrade: 3,
+  grades: {
+    1: {
+      title: '1-сынып буыны (Әліппе және Цифрлық сауаттылық бастамасы)',
+      quality: 78,
+      growth: '+9%',
+      supportCount: 8,
+      totalStudents: 84,
+      starsCollected: 420,
+      classes: [
+        { name: '1А сыныбы', teacher: 'Айгүл Серікқызы', quality: 84, status: 'green', students: 28, support: 2, topSkill: 'Буындап оқу және дыбыстық талдау' },
+        { name: '1Ә сыныбы', teacher: 'Меруерт Қанатқызы', quality: 77, status: 'yellow', students: 28, support: 3, topSkill: '10 көлемінде қосу және азайту' },
+        { name: '1Б сыныбы', teacher: 'Гүлнұр Талғатқызы', quality: 73, status: 'yellow', students: 28, support: 3, topSkill: 'Көркем жазу каллиграфиясы' }
+      ],
+      diagnostics: [
+        { id: 'd101', skill: 'Дыбыстық талдау және буындап оқу', subject: 'Әліппе / Ана тілі', level: 'green', mastery: 86, statusText: 'Тақырыпты толық меңгерген', actionText: 'Дамыту: Шығармашылық ертегі құрастыру', studentsCount: 72, details: 'Оқушылар дауысты және дауыссыз дыбыстарды ажыратады, сөздерді буынға дұрыс бөледі. Келесі қадам: шағын мәтіндерді мәнерлеп оқуға баулу.' },
+        { id: 'd102', skill: 'Сөйлемді тыныс белгісімен көшіріп жазу', subject: 'Ана тілі', level: 'yellow', mastery: 74, statusText: 'Аздап бекітуді талап етеді', actionText: 'Жаттығу: Графикалық диктант', studentsCount: 9, details: 'Бас әріп пен сөйлем соңындағы нүктені қоюда кейбір оқушылар шатасады. Күнделікті 5 минуттық каллиграфиялық сергіту ұсынылады.' },
+        { id: 'd103', skill: 'Ондықтан аттап қосу және азайту (20 көлемінде)', subject: 'Математика', level: 'red', mastery: 62, statusText: 'Қиындық бар (Қолдау қажет)', actionText: 'Жеке жоспар: Сандық сәулемен жұмыс', studentsCount: 8, details: 'Санды құрамы бойынша жіктеп, 10-ға дейін толықтыру тәсілін визуалды текшелермен және сандық сәуле арқылы қайта пысықтау қажет.' }
+      ]
+    },
+    2: {
+      title: '2-сынып буыны (Оқу техникасы мен логикалық ойлауды бекіту)',
+      quality: 76,
+      growth: '+7%',
+      supportCount: 10,
+      totalStudents: 90,
+      starsCollected: 515,
+      classes: [
+        { name: '2А сыныбы', teacher: 'Жанар Әбдірахманқызы', quality: 83, status: 'green', students: 30, support: 2, topSkill: 'Мәтінді түсініп оқу жылдамдығы' },
+        { name: '2Ә сыныбы', teacher: 'Сәуле Бақытқызы', quality: 76, status: 'yellow', students: 30, support: 3, topSkill: '100 көлеміндегі ауызша есептеу' },
+        { name: '2Б сыныбы', teacher: 'Динара Нұрланқызы', quality: 69, status: 'red', students: 30, support: 5, topSkill: 'Құрама есептердің шартын құру' }
+      ],
+      diagnostics: [
+        { id: 'd201', skill: 'Сөз таптарын (зат есім, етістік, сын есім) ажырату', subject: 'Қазақ тілі', level: 'green', mastery: 84, statusText: 'Тақырыпты толық меңгерген', actionText: 'Дамыту: Интерактивті сөздік ойындар', studentsCount: 75, details: 'Сұрақ қою арқылы сөз таптарын еркін табады. Деңгейлік шығармашылық тапсырмалар беріледі.' },
+        { id: 'd202', skill: 'Мәтіннің бөліктерін (басы, негізгі бөлім, соңы) анықтау', subject: 'Әдебиеттік оқу', level: 'yellow', mastery: 73, statusText: 'Аздап бекітуді талап етеді', actionText: 'Жаттығу: Сюжеттік суреттер реті', studentsCount: 12, details: 'Мәтін жоспарын құруда тірек сөздерді табу жаттығуларын жүйелеу керек.' },
+        { id: 'd203', skill: 'Екі амалмен шығарылатын мәтіндік есептер', subject: 'Математика', level: 'red', mastery: 64, statusText: 'Қиындық бар (Қолдау қажет)', actionText: 'Жеке жоспар: Сызба-модельдеу әдісі', studentsCount: 10, details: 'Аралық сұрақты қою және есептің қысқаша шартын сызбаға түсіру бойынша жеке карточкалармен жұмыс жүргізіледі.' }
+      ]
+    },
+    3: {
+      title: '3-сынып буыны (Негізгі пәндік құзыреттіліктер мен функционалдық сауаттылық)',
+      quality: 74,
+      growth: '+8%',
+      supportCount: 11,
+      totalStudents: 88,
+      starsCollected: 640,
+      classes: [
+        { name: '3А сыныбы', teacher: 'Әсел Мұратқызы', quality: 82, status: 'green', students: 30, support: 2, topSkill: 'Оқылым және функционалдық талдау' },
+        { name: '3Ә сыныбы', teacher: 'Ботагөз Ерланқызы', quality: 74, status: 'yellow', students: 29, support: 4, topSkill: 'Мәтінді түсіну және негізгі ой' },
+        { name: '3Б сыныбы', teacher: 'Қарлығаш Сәбитқызы', quality: 66, status: 'red', students: 29, support: 5, topSkill: 'Көбейту кестесі мен мәтіндік есеп' }
+      ],
+      diagnostics: [
+        { id: 'd301', skill: 'Оқылым (Мәнерлеп және шапшаң оқу нормасы)', subject: 'Әдебиеттік оқу', level: 'green', mastery: 85, statusText: 'Тақырыпты толық меңгерген', actionText: 'Дамыту: Зерттеушілік оқылым және эссе', studentsCount: 74, details: 'Оқушылар минутына 70-85 сөзді түсініп оқиды, интонация мен логикалық екпінді сақтайды.' },
+        { id: 'd302', skill: 'Мәтінді түсіну (Негізгі ой мен детальді ақпаратты табу)', subject: 'Қазақ тілі / Оқу сауаттылығы', level: 'yellow', mastery: 74, statusText: 'Аздап бекітуді талап етеді', actionText: 'Жаттығу: «Сұрақтар түймедағы» әдісі', studentsCount: 14, details: 'Астарлы ақпаратты табу мен автор көзқарасын анықтауда қосымша жетекші сұрақтар қажет.' },
+        { id: 'd303', skill: 'Есеп шығару (Кестелік көбейту/бөлу және шамалар арасындағы тәуелділік)', subject: 'Математика', level: 'red', mastery: 63, statusText: 'Қиындық бар (Қолдау қажет)', actionText: 'Жеке жоспар: Геймификацияланған тренажер', studentsCount: 11, details: 'Бағасы, саны, құны немесе жылдамдық, уақыт, қашықтық формулаларын қолдануда жеке қолдау маршруты іске қосылды.' },
+        { id: 'd304', skill: 'Табиғат құбылыстары мен себеп-салдарлық байланысты түсіндіру', subject: 'Жаратылыстану', level: 'green', mastery: 81, statusText: 'Тақырыпты толық меңгерген', actionText: 'Дамыту: Шағын STEM тәжірибелер', studentsCount: 71, details: 'Эксперимент нәтижесін қорытындылап, кестеге толтыра алады.' }
+      ]
+    },
+    4: {
+      title: '4-сынып буыны (Орта буынға бейімделу және ББЖМ дайындық)',
+      quality: 79,
+      growth: '+10%',
+      supportCount: 7,
+      totalStudents: 92,
+      starsCollected: 790,
+      classes: [
+        { name: '4А сыныбы', teacher: 'Ләззат Қайратқызы', quality: 86, status: 'green', students: 31, support: 1, topSkill: 'Логикалық математика және PISA/TIMSS тапсырмалары' },
+        { name: '4Ә сыныбы', teacher: 'Роза Берікқызы', quality: 78, status: 'yellow', students: 31, support: 3, topSkill: 'Күрделі теңдеулер мен геометриялық аудан' },
+        { name: '4Б сыныбы', teacher: 'Алтынай Серікбайқызы', quality: 73, status: 'yellow', students: 30, support: 3, topSkill: 'Құрмалас сөйлем және эссе жазу' }
+      ],
+      diagnostics: [
+        { id: 'd401', skill: 'Көп таңбалы сандармен арифметикалық амалдар', subject: 'Математика', level: 'green', mastery: 87, statusText: 'Тақырыпты толық меңгерген', actionText: 'Дамыту: Олимпиадалық логикалық есептер', studentsCount: 80, details: 'Бағандап көбейту және бөлу алгоритмін қатесіз орындайды.' },
+        { id: 'd402', skill: 'Периметр мен ауданға берілген құрама геометриялық есептер', subject: 'Математика', level: 'yellow', mastery: 75, statusText: 'Аздап бекітуді талап етеді', actionText: 'Жаттығу: Торкөз бетіндегі модельдеу', studentsCount: 10, details: 'Өлшем бірліктерін (см², дм², м²) түрлендіруде жаттығу жұмыстары жүргізілуде.' },
+        { id: 'd403', skill: 'Мәтіндерді салыстырмалы талдау (ББЖМ форматы)', subject: 'Оқу сауаттылығы', level: 'red', mastery: 67, statusText: 'Қиындық бар (Қолдау қажет)', actionText: 'Жеке жоспар: Диаграмма мен мәтін интеграциясы', studentsCount: 7, details: 'Кесте мен инфографикадағы деректі мәтінмен сәйкестендіру дағдысына арналған апталық практикум.' }
+      ]
+    }
+  },
+  learningGaps: [
+    {
+      id: 'gap1',
+      title: 'Мәтіннің негізгі ойын және тірек сөздерін табу',
+      subject: 'Әдебиеттік оқу / Оқу сауаттылығы',
+      gradeRange: '2–4 сыныптар',
+      frequency: 'Жиі кездесетін (32% оқушыда)',
+      difficultyReason: 'Оқушылар мәтінді механикалық түрде оқып шыққанымен, абзацтағы басты идеяны қосалқы детальдардан ажыратуда қиналады.',
+      interactiveTask: '«Түртіп алу және 3 сөйлем» әдісі: Мәтінді оқып, әр бөліктен 1 жасыл (басты кейіпкер), 1 сары (іс-әрекет), 1 көк (қорытынды ой) сөзді белгілеп, мақалмен түйіндеу.',
+      methodTip: 'Мұғалімге ұсыныс: «Стоп-кадр» тәсілімен оқыту — әр абзацтан соң оқушыға «Автор бізге не айтқысы келді?» деген бір сұрақ қою.'
+    },
+    {
+      id: 'gap2',
+      title: 'Екі және үш амалмен шығарылатын мәтіндік есептер',
+      subject: 'Математика',
+      gradeRange: '2–3 сыныптар',
+      frequency: 'Жоғары (38% оқушыда)',
+      difficultyReason: 'Есептің шартын толық елестете алмау, бірінші амалда нені табу керектігін (аралық белгісізді) анықтай алмау.',
+      interactiveTask: '«Дүкенші және Сатып алушы» рөлдік-визуалды симуляциясы: Сызбадағы бос ұяшықтарды толтырып, есептің шешу ағашын (1-амал -> 2-амал) құрастыру.',
+      methodTip: 'Мұғалімге ұсыныс: Есепті сандарсыз оқып, алдымен тек сұрақтар тізбегін құрғызу («Нені білеміз? Нені табу керек?»).'
+    },
+    {
+      id: 'gap3',
+      title: 'Көбейту және бөлу кестесін жылдам қолдану (6, 7, 8, 9 сандары)',
+      subject: 'Математика',
+      gradeRange: '3-сынып',
+      frequency: 'Орташа-жоғары (29% оқушыда)',
+      difficultyReason: 'Кестені мағынасыз жаттау салдарынан кері амалда (бөлуде) және қалдықпен бөлуде кідіріс пайда болады.',
+      interactiveTask: '«Пифагор жұлдызды лабиринті»: Көбейту жұптарын геометриялық тіктөртбұрыш ауданы ретінде бояу және флэш-картамен 60 секундтық спринт.',
+      methodTip: 'Мұғалімге ұсыныс: Коммутативтілік қасиетті (7×8 = 8×7) және саусақпен/9-ға көбейту лайфхактарын көрнекі плакатпен беру.'
+    },
+    {
+      id: 'gap4',
+      title: 'Дыбыстық-әріптік талдау және дауыссыз дыбыс емлесі (у, и, й, ң)',
+      subject: 'Қазақ тілі / Сауат ашу',
+      gradeRange: '1–2 сыныптар',
+      frequency: 'Орташа (24% оқушыда)',
+      difficultyReason: 'Айтылуы мен жазылуында ерекшелігі бар сөздерде дыбыс саны мен әріп санын шатастыру.',
+      interactiveTask: '«Дыбыстық бағдаршам» конструкторы: Сөздегі дауысты дыбысты қызыл, ұяңды сары, қатаңды көк текшемен жинау.',
+      methodTip: 'Мұғалімге ұсыныс: Артикуляциялық айнамен жұмыс және буындық лото ойындарын сабақ басында 4 минут қолдану.'
+    },
+    {
+      id: 'gap5',
+      title: 'Шамалар арасындағы тәуелділік (Жылдамдық, Уақыт, Қашықтық)',
+      subject: 'Математика',
+      gradeRange: '3–4 сыныптар',
+      frequency: 'Жиі кездесетін (31% оқушыда)',
+      difficultyReason: 'Формулаларды өмірлік жағдаятпен байланыстырмау және өлшем бірліктерін (км/сағ, м/мин) шатастыру.',
+      interactiveTask: '«Зымыран саяхаты» интерактивті сызбасы: Қозғалыс бағытын көрсеткімен белгілеп, сиқырлы үшбұрыш (S = v × t) арқылы белгісізді табу.',
+      methodTip: 'Мұғалімге ұсыныс: Дене шынықтыру сабағымен кіріктіріп, оқушылардың өз жүру уақыты мен қашықтығын өлшету.'
+    },
+    {
+      id: 'gap6',
+      title: 'Сөз құрамына талдау (Түбір мен қосымша реті)',
+      subject: 'Қазақ тілі',
+      gradeRange: '3–4 сыныптар',
+      frequency: 'Орташа (22% оқушыда)',
+      difficultyReason: 'Жұрнақ пен жалғаудың қызметін (сөз тудырушы және сөз түрлендіруші) ажыратудағы қиындық.',
+      interactiveTask: '«Сөз пойызы» ойыны: Түбір сөз вагонына мағына өзгертетін жұрнақ пен сөз байланыстыратын жалғау вагондарын дұрыс тіркеу.',
+      methodTip: 'Мұғалімге ұсыныс: Түбірлес сөздер ұясын жасату арқылы жұрнақтың жаңа ұғым жасайтынын дәлелдеу.'
+    }
+  ],
+  students: [
+    {
+      id: 'st1',
+      name: 'Арман Асқарұлы',
+      grade: '3А сынып',
+      avatar: '🚀',
+      stars: 145,
+      mentorNote: 'Арман соңғы 4 аптада мәтіндік есептерді сызбамен шығаруда +18% өсім көрсетті! Жеке қолдау бағдарламасы оң нәтиже беруде.',
+      supportStatus: 'Оң динамика (Сарыдан -> Жасылға өтуде)',
+      skills: [
+        { name: 'Оқылым және мәнерлеп оқу', before: 68, after: 86 },
+        { name: 'Мәтінді түсіну және талдау', before: 60, after: 79 },
+        { name: 'Екі амалмен есеп шығару', before: 52, after: 74 },
+        { name: 'Көбейту және бөлу кестесі', before: 58, after: 82 },
+        { name: 'Жазбаша сауаттылық (Диктант)', before: 64, after: 80 }
+      ],
+      badges: [
+        { icon: '🏆', title: 'Математика шебері', desc: 'Көбейту кестесін 100% меңгерді', earned: true },
+        { icon: '🦸‍♂️', title: 'Оқымысты суперқаһарман', desc: 'Аптасына 3 ертегі талдады', earned: true },
+        { icon: '🌟', title: 'Алтын Қалам', desc: 'Қатесіз 5 шығармашылық жұмыс', earned: true },
+        { icon: '🔬', title: 'Жас Зерттеуші', desc: 'Жаратылыстану жобасының жеңімпазы', earned: false }
+      ]
+    },
+    {
+      id: 'st2',
+      name: 'Айару Нұржанқызы',
+      grade: '3Ә сынып',
+      avatar: '🦄',
+      stars: 162,
+      mentorNote: 'Айару оқылым мен шығармашылық эссе жазуда өте жоғары нәтиже көрсетеді. Логикалық есептер бойынша қосымша деңгейлік тапсырмалар берілді.',
+      supportStatus: 'Тұрақты жоғары (Дамыту траекториясы)',
+      skills: [
+        { name: 'Оқылым және мәнерлеп оқу', before: 78, after: 94 },
+        { name: 'Мәтінді түсіну және талдау', before: 74, after: 90 },
+        { name: 'Екі амалмен есеп шығару', before: 62, after: 78 },
+        { name: 'Көбейту және бөлу кестесі', before: 70, after: 85 },
+        { name: 'Жазбаша сауаттылық (Диктант)', before: 80, after: 92 }
+      ],
+      badges: [
+        { icon: '🦸‍♀️', title: 'Оқымысты суперқаһарман', desc: 'Мектептің үздік оқырманы', earned: true },
+        { icon: '🌟', title: 'Алтын Қалам', desc: 'Үздік эссе авторы', earned: true },
+        { icon: '🏆', title: 'Математика шебері', desc: 'Логикалық марафон белсендісі', earned: true },
+        { icon: '🔬', title: 'Жас Зерттеуші', desc: 'Эко-жоба авторы', earned: true }
+      ]
+    },
+    {
+      id: 'st3',
+      name: 'Ерасыл Болатұлы',
+      grade: '3Б сынып',
+      avatar: '🦖',
+      stars: 98,
+      mentorNote: 'Ерасылмен «Білім бағдаршамы» аясында аптасына 2 рет жеке қолдау сабағы өтілуде. Көбейту кестесі мен мәтін мазмұнын айтуда +15% ілгерілеу бар.',
+      supportStatus: 'Белсенді жеке қолдау (Қызылдан -> Сарыға өтті)',
+      skills: [
+        { name: 'Оқылым және мәнерлеп оқу', before: 54, after: 71 },
+        { name: 'Мәтінді түсіну және талдау', before: 49, after: 68 },
+        { name: 'Екі амалмен есеп шығару', before: 45, after: 64 },
+        { name: 'Көбейту және бөлу кестесі', before: 50, after: 72 },
+        { name: 'Жазбаша сауаттылық (Диктант)', before: 52, after: 67 }
+      ],
+      badges: [
+        { icon: '🏆', title: 'Математика шебері', desc: 'Көбейту спринтінде +22% өсім', earned: true },
+        { icon: '🦸‍♂️', title: 'Оқымысты суперқаһарман', desc: 'Оқу жылдамдығын арттырды', earned: true },
+        { icon: '🌟', title: 'Алтын Қалам', desc: 'Каллиграфия марафонында', earned: false },
+        { icon: '🔬', title: 'Жас Зерттеуші', desc: 'Алғашқы зертханалық тәжірибе', earned: false }
+      ]
+    }
+  ]
+};
+
+let appState = loadState();
+let currentTrafficFilter = 'all';
+let selectedStudentId = appState.students[0].id;
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      return JSON.parse(raw);
+    }
+  } catch (e) {
+    console.warn('LocalStorage оқу қатесі:', e);
+  }
+  return JSON.parse(JSON.stringify(defaultPlatformData));
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+  } catch (e) {
+    console.warn('LocalStorage сақтау қатесі:', e);
+  }
+}
+
+// Навигациялық бөлімдерді ауыстыру
+function switchSection(sectionId) {
+  document.querySelectorAll('.section-view').forEach(sec => {
+    sec.classList.remove('active');
+  });
+  const target = document.getElementById(sectionId);
+  if (target) target.classList.add('active');
+
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.target === sectionId);
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Сынып буынын ауыстыру (1-4 сынып)
+function selectGrade(gradeNum) {
+  appState.currentGrade = Number(gradeNum);
+  saveState();
+
+  document.querySelectorAll('.grade-btn').forEach(btn => {
+    btn.classList.toggle('active', Number(btn.dataset.grade) === appState.currentGrade);
+  });
+
+  renderDashboard();
+  renderMonitoringSection();
+  renderTrafficLightSection();
+  showToast(`📚 ${gradeNum}-сынып буынының деректері жүктелді!`);
+}
+
+// 1. БАСТЫ БЕТ (DASHBOARD) РЕНДЕРІ
+function renderDashboard() {
+  const g = appState.grades[appState.currentGrade];
+  if (!g) return;
+
+  document.getElementById('currentGradeTitle').textContent = g.title;
+  document.getElementById('kpiQuality').textContent = `${g.quality}%`;
+  document.getElementById('kpiGrowth').textContent = g.growth;
+  document.getElementById('kpiSupport').textContent = `${g.supportCount} оқушы`;
+  document.getElementById('kpiStars').textContent = `${g.starsCollected} ⭐`;
+
+  const classGrid = document.getElementById('dashboardClassGrid');
+  classGrid.innerHTML = g.classes.map(cls => {
+    const pillClass = cls.status === 'green' ? 'pill-green' : cls.status === 'yellow' ? 'pill-yellow' : 'pill-red';
+    const fillClass = cls.status === 'green' ? 'fill-green' : cls.status === 'yellow' ? 'fill-yellow' : 'fill-red';
+    const statusLabel = cls.status === 'green' ? '🟢 Жоғары деңгей' : cls.status === 'yellow' ? '🟡 Орташа (Тұрақты)' : '🔴 Қолдау қажет';
+
+    return `
+      <div class="class-card" onclick="openClassModal('${cls.name}', '${cls.teacher}', ${cls.quality}, ${cls.students}, ${cls.support}, '${cls.topSkill}')">
+        <div class="class-card-top">
+          <div class="class-badge">🏫 ${cls.name}</div>
+          <span class="traffic-pill ${pillClass}">${statusLabel}</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:baseline;">
+          <span style="font-size:0.85rem; font-weight:700; color:var(--text-muted);">Білім сапасы:</span>
+          <span style="font-size:1.65rem; font-weight:800; color:var(--text-dark);">${cls.quality}%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill ${fillClass}" style="width: ${cls.quality}%"></div>
+        </div>
+        <p style="font-size:0.82rem; font-weight:600; color:var(--teal-accent); margin: 8px 0;">
+          🎯 Басым дағды: ${cls.topSkill}
+        </p>
+        <div class="class-meta">
+          <span>👩‍🏫 ${cls.teacher}</span>
+          <span>👧👦 ${cls.students} оқушы (Қолдауда: ${cls.support})</span>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // Басты беттегі қысқаша бағдаршам превьюі
+  const quickDiag = document.getElementById('dashboardQuickTraffic');
+  if (quickDiag) {
+    quickDiag.innerHTML = g.diagnostics.map(d => renderDiagnosticCardHTML(d)).join('');
+  }
+}
+
+// 2. 1-4 СЫНЫПТАР МОНИТОРИНГІ БӨЛІМІ
+function renderMonitoringSection() {
+  const tbody = document.getElementById('allGradesComparisonBody');
+  if (!tbody) return;
+
+  const rows = Object.keys(appState.grades).map(gradeKey => {
+    const gr = appState.grades[gradeKey];
+    const avgClass = gr.classes.map(c => `${c.name} (${c.quality}%)`).join(' • ');
+    return `
+      <tr>
+        <td><strong style="color:var(--primary-blue); font-size:0.95rem;">${gradeKey}-сыныптар</strong></td>
+        <td>${gr.totalStudents} оқушы</td>
+        <td><span class="traffic-pill ${gr.quality >= 78 ? 'pill-green' : 'pill-yellow'}">${gr.quality}%</span></td>
+        <td style="color:#048A65; font-weight:800;">${gr.growth}</td>
+        <td><span class="traffic-pill pill-red">${gr.supportCount} оқушы</span></td>
+        <td style="font-size:0.82rem;">${avgClass}</td>
+        <td>
+          <button class="btn btn-outline" style="padding:6px 12px; font-size:0.78rem;" onclick="selectGrade(${gradeKey}); switchSection('sec-dashboard');">
+            Көру →
+          </button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+
+  tbody.innerHTML = rows;
+}
+
+// 3. БІЛІМ БАҒДАРШАМЫ МОДУЛІ
+function renderDiagnosticCardHTML(d) {
+  const levelClass = `level-${d.level}`;
+  const pillClass = d.level === 'green' ? 'pill-green' : d.level === 'yellow' ? 'pill-yellow' : 'pill-red';
+  const emoji = d.level === 'green' ? '🟢 Жасыл (Жоғары)' : d.level === 'yellow' ? '🟡 Сары (Орташа)' : '🔴 Қызыл (Қолдау қажет)';
+  const fillClass = d.level === 'green' ? 'fill-green' : d.level === 'yellow' ? 'fill-yellow' : 'fill-red';
+
+  return `
+    <div class="diag-card ${levelClass}">
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:10px;">
+          <span class="traffic-pill ${pillClass}">${emoji}</span>
+          <span style="font-size:0.78rem; font-weight:700; color:var(--text-muted);">${d.subject}</span>
+        </div>
+        <h3 style="font-size:1.05rem; font-weight:800; margin-bottom:6px;">${d.skill}</h3>
+        <p style="font-size:0.83rem; color:var(--text-muted); font-weight:600; margin-bottom:10px;">
+          Статус: <strong>${d.statusText}</strong> (${d.studentsCount} оқушы)
+        </p>
+        <div class="progress-track">
+          <div class="progress-fill ${fillClass}" style="width:${d.mastery}%"></div>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-size:0.78rem; font-weight:700;">
+          <span>Меңгеру деңгейі:</span>
+          <span>${d.mastery}%</span>
+        </div>
+      </div>
+      <div class="diag-action-box">
+        <div style="font-size:0.8rem; font-weight:700; color:var(--text-dark);">
+          ⚡ ${d.actionText}
+        </div>
+        <button class="btn btn-outline" style="padding:7px 12px; font-size:0.76rem;" onclick="openDiagnosticModal('${d.id}')">
+          Картасы
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function renderTrafficLightSection() {
+  const g = appState.grades[appState.currentGrade];
+  const container = document.getElementById('trafficDiagnosticGrid');
+  if (!container || !g) return;
+
+  const filtered = currentTrafficFilter === 'all'
+    ? g.diagnostics
+    : g.diagnostics.filter(item => item.level === currentTrafficFilter);
+
+  if (filtered.length === 0) {
+    container.innerHTML = `<div class="mgmt-card" style="grid-column:1/-1; text-align:center;">Бұл фильтр бойынша дағдылар табылмады.</div>`;
+    return;
+  }
+
+  container.innerHTML = filtered.map(d => renderDiagnosticCardHTML(d)).join('');
+}
+
+function filterTraffic(level) {
+  currentTrafficFilter = level;
+  document.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.classList.toggle('active', chip.dataset.level === level);
+  });
+  renderTrafficLightSection();
+}
+
+// 4. ОҚУ ОЛҚЫЛЫҚТАРЫНЫҢ НАВИГАТОРЫ
+function renderGapsSection() {
+  const container = document.getElementById('learningGapsContainer');
+  if (!container) return;
+
+  container.innerHTML = appState.learningGaps.map(gap => `
+    <div class="gap-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <span class="gap-subject-tag">📘 ${gap.subject}</span>
+        <span class="traffic-pill pill-red">📌 ${gap.gradeRange}</span>
+      </div>
+      <h3 style="font-size:1.1rem; font-weight:800; margin:6px 0 8px;">${gap.title}</h3>
+      <p style="font-size:0.82rem; color:var(--coral-red); font-weight:700; margin-bottom:8px;">
+        📊 Кездесу жиілігі: ${gap.frequency}
+      </p>
+      <p style="font-size:0.84rem; color:var(--text-muted); font-weight:600;">
+        <strong>Себебі:</strong> ${gap.difficultyReason}
+      </p>
+      <div class="gap-task-box">
+        <strong>🎮 Адаптивті интерактивті тапсырма:</strong><br/>
+        ${gap.interactiveTask}
+      </div>
+      <p style="font-size:0.82rem; font-weight:600; color:var(--teal-accent); margin-bottom:14px;">
+        💡 ${gap.methodTip}
+      </p>
+      <button class="btn btn-primary" style="width:100%; justify-content:center;" onclick="openGapExerciseModal('${gap.id}')">
+        🎯 Тапсырманы сыныпта қолдану (Интерактивті тренажер)
+      </button>
+    </div>
+  `).join('');
+}
+
+// 5. ӨСУ ТРАЕКТОРИЯСЫ (ОҚУШЫНЫҢ ЖЕКЕ ПАСПОРТЫ)
+function renderStudentPassport() {
+  const selector = document.getElementById('studentSelectDropdown');
+  if (selector) {
+    selector.innerHTML = appState.students.map(st => `
+      <option value="${st.id}" ${st.id === selectedStudentId ? 'selected' : ''}>
+        ${st.avatar} ${st.name} (${st.grade})
+      </option>
+    `).join('');
+  }
+
+  const student = appState.students.find(s => s.id === selectedStudentId) || appState.students[0];
+  if (!student) return;
+
+  document.getElementById('passportAvatar').textContent = student.avatar;
+  document.getElementById('passportName').textContent = student.name;
+  document.getElementById('passportGrade').textContent = student.grade;
+  document.getElementById('passportStars').textContent = `${student.stars} Жұлдызша`;
+  document.getElementById('passportSupportStatus').textContent = student.supportStatus;
+  document.getElementById('passportMentorNote').textContent = student.mentorNote;
+
+  const badgesEl = document.getElementById('passportBadgesGrid');
+  badgesEl.innerHTML = student.badges.map(b => `
+    <div class="badge-item ${b.earned ? 'earned' : ''}">
+      <div style="font-size:1.6rem; margin-bottom:4px;">${b.icon}</div>
+      <div>${b.title}</div>
+      <div style="font-size:0.7rem; font-weight:600; opacity:0.85; margin-top:3px;">${b.desc}</div>
+    </div>
+  `).join('');
+
+  const skillsEl = document.getElementById('passportSkillsCompare');
+  skillsEl.innerHTML = student.skills.map(sk => {
+    const diff = sk.after - sk.before;
+    return `
+      <div class="skill-compare-row">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <strong style="font-size:0.92rem;">${sk.name}</strong>
+          <span class="traffic-pill pill-green">Өсім: +${diff}% 🚀</span>
+        </div>
+        <div class="dual-bars">
+          <div class="bar-line">
+            <span class="bar-tag">Бастапқы: ${sk.before}%</span>
+            <div class="progress-track" style="margin:0; flex:1; height:10px;">
+              <div class="progress-fill fill-yellow" style="width:${sk.before}%"></div>
+            </div>
+          </div>
+          <div class="bar-line">
+            <span class="bar-tag" style="color:var(--teal-accent);">Қазіргі: ${sk.after}%</span>
+            <div class="progress-track" style="margin:0; flex:1; height:12px;">
+              <div class="progress-fill fill-green" style="width:${sk.after}%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function onStudentChange(studentId) {
+  selectedStudentId = studentId;
+  renderStudentPassport();
+}
+
+function awardStarToCurrentStudent() {
+  const student = appState.students.find(s => s.id === selectedStudentId);
+  if (!student) return;
+  student.stars += 5;
+  appState.grades[appState.currentGrade].starsCollected += 5;
+  saveState();
+  renderStudentPassport();
+  renderDashboard();
+  showToast(`🌟 ${student.name} +5 «Жұлдызды Академия» ұпайымен марапатталды!`);
+}
+
+// 6. МОДАЛЬДЫ ТЕРЕЗЕЛЕР МЕН ЖАҢА ОҚУШЫ ҚОСУ
+function openDiagnosticModal(diagId) {
+  const g = appState.grades[appState.currentGrade];
+  const d = g.diagnostics.find(item => item.id === diagId);
+  if (!d) return;
+
+  const modalContent = document.getElementById('dynamicModalBody');
+  modalContent.innerHTML = `
+    <span class="traffic-pill ${d.level === 'green' ? 'pill-green' : d.level === 'yellow' ? 'pill-yellow' : 'pill-red'}">
+      ${d.subject} • Меңгеру: ${d.mastery}%
+    </span>
+    <h2 style="margin:12px 0 8px; font-size:1.3rem; font-weight:800;">${d.skill}</h2>
+    <p style="font-size:0.9rem; color:var(--text-muted); font-weight:600; margin-bottom:16px;">
+      ${d.details}
+    </p>
+    <div style="background:var(--bg-main); padding:16px; border-radius:16px; margin-bottom:16px;">
+      <h4 style="font-size:0.92rem; margin-bottom:8px;">📋 Жеке қолдау және түзету алгоритмі:</h4>
+      <ul style="padding-left:20px; font-size:0.86rem; font-weight:600; display:flex; flex-direction:column; gap:6px;">
+        <li><strong>1-қадам (Диагностика):</strong> Қате жіберілген нақты микро-дағдыны анықтау (${d.studentsCount} оқушы қамтылған).</li>
+        <li><strong>2-қадам (Әрекет):</strong> ${d.actionText}.</li>
+        <li><strong>3-қадам (Мониторинг):</strong> Апта соңында 5 тапсырмадан тұратын экспресс-чек жүргізу.</li>
+      </ul>
+    </div>
+    <div style="display:flex; justify-content:flex-end; gap:10px;">
+      <button class="btn btn-primary" onclick="closeModal(); showToast('✅ Әдістемелік карта мұғалім портфолиосына сақталды!');">
+        📥 Жоспарды жүктеу / Қолдану
+      </button>
+    </div>
+  `;
+  document.getElementById('appModal').classList.add('open');
+}
+
+function openClassModal(name, teacher, quality, students, support, topSkill) {
+  const modalContent = document.getElementById('dynamicModalBody');
+  modalContent.innerHTML = `
+    <span class="traffic-pill pill-green">🏫 Сынып паспорты</span>
+    <h2 style="margin:10px 0 6px; font-size:1.35rem; font-weight:800;">${name} — Толық аналитика</h2>
+    <p style="font-size:0.88rem; color:var(--text-muted); font-weight:600; margin-bottom:16px;">
+      Сынып жетекшісі: <strong>${teacher}</strong> | Оқушы саны: <strong>${students}</strong>
+    </p>
+    <div class="kpi-grid" style="grid-template-columns:1fr 1fr; margin-bottom:16px;">
+      <div style="background:var(--primary-blue-light); padding:14px; border-radius:14px;">
+        <div style="font-size:0.78rem; font-weight:700;">Білім сапасы</div>
+        <div style="font-size:1.6rem; font-weight:800; color:var(--primary-blue);">${quality}%</div>
+      </div>
+      <div style="background:var(--coral-red-light); padding:14px; border-radius:14px;">
+        <div style="font-size:0.78rem; font-weight:700;">Жеке қолдауда</div>
+        <div style="font-size:1.6rem; font-weight:800; color:var(--coral-red);">${support} оқушы</div>
+      </div>
+    </div>
+    <p style="font-size:0.88rem; font-weight:600; margin-bottom:16px;">
+      🎯 <strong>Үздік қалыптасқан дағды:</strong> ${topSkill}<br/>
+      💡 <strong>Әдістемелік ұсыныс:</strong> Қолдауды қажет ететін ${support} оқушыға «Оқу олқылықтарының навигаторы» модулінен апталық микро-тапсырмалар бекітілген.
+    </p>
+    <button class="btn btn-primary" onclick="closeModal(); switchSection('sec-passport');">
+      🚀 Оқушылардың өсу траекториясына өту
+    </button>
+  `;
+  document.getElementById('appModal').classList.add('open');
+}
+
+function openGapExerciseModal(gapId) {
+  const gap = appState.learningGaps.find(g => g.id === gapId);
+  if (!gap) return;
+
+  const modalContent = document.getElementById('dynamicModalBody');
+  modalContent.innerHTML = `
+    <span class="gap-subject-tag">${gap.subject}</span>
+    <h2 style="font-size:1.25rem; font-weight:800; margin-bottom:10px;">🎮 Интерактивті тапсырма: ${gap.title}</h2>
+    <div class="gap-task-box" style="font-size:0.92rem;">
+      ${gap.interactiveTask}
+    </div>
+    <p style="font-size:0.86rem; font-weight:600; color:var(--text-muted); margin-bottom:16px;">
+      ${gap.methodTip}
+    </p>
+    <div style="background:var(--bright-green-light); padding:14px; border-radius:14px; margin-bottom:16px; font-size:0.85rem; font-weight:700; color:#055A43;">
+      ✨ Күтілетін нәтиже: 2 апталық жүйелі қолданудан кейін оқушылардың тақырыпты меңгеру көрсеткіші орта есеппен +14%-ға артады.
+    </div>
+    <button class="btn btn-primary" onclick="closeModal(); showToast('🎯 Интерактивті тапсырма сынып журналына белгіленді!');">
+      ✅ Сабақ жоспарына қосу
+    </button>
+  `;
+  document.getElementById('appModal').classList.add('open');
+}
+
+function openAddStudentModal() {
+  const modalContent = document.getElementById('dynamicModalBody');
+  modalContent.innerHTML = `
+    <h2 style="font-size:1.3rem; font-weight:800; margin-bottom:6px;">➕ Жаңа оқушы және диагностика қосу</h2>
+    <p style="font-size:0.84rem; color:var(--text-muted); font-weight:600; margin-bottom:16px;">
+      Енгізілген деректер браузер жадында (localStorage) автоматты түрде сақталады.
+    </p>
+    <form onsubmit="handleAddStudentSubmit(event)">
+      <div class="form-group">
+        <label>Оқушының аты-жөні:</label>
+        <input type="text" id="newStudentName" class="form-control" placeholder="Мысалы: Кәусар Маратқызы" required />
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div class="form-group">
+          <label>Сыныбы:</label>
+          <select id="newStudentGrade" class="form-control">
+            <option value="1А сынып">1А сынып</option>
+            <option value="2А сынып">2А сынып</option>
+            <option value="3А сынып" selected>3А сынып</option>
+            <option value="3Ә сынып">3Ә сынып</option>
+            <option value="4А сынып">4А сынып</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Аватар белгісі:</label>
+          <select id="newStudentAvatar" class="form-control">
+            <option value="🚀">🚀 Ғарышкер</option>
+            <option value="🦁">🦁 Батыл Арыстан</option>
+            <option value="🦉">🦉 Дана Үкі</option>
+            <option value="🌟">🌟 Жұлдызша</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div class="form-group">
+          <label>Бастапқы көрсеткіші (%):</label>
+          <input type="number" id="newStudentBefore" class="form-control" value="58" min="20" max="95" required />
+        </div>
+        <div class="form-group">
+          <label>Қазіргі нәтижесі (%):</label>
+          <input type="number" id="newStudentAfter" class="form-control" value="81" min="25" max="100" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Жеке қолдау қорытындысы (Мұғалім пікірі):</label>
+        <input type="text" id="newStudentNote" class="form-control" value="Жеке қолдау картасы бойынша оқылым мен математикадан жоғары серпін көрсетті!" required />
+      </div>
+      <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:18px;">
+        <button type="button" class="btn btn-outline" onclick="closeModal()">Болдырмау</button>
+        <button type="submit" class="btn btn-primary">💾 Сақтау және Паспорт ашу</button>
+      </div>
+    </form>
+  `;
+  document.getElementById('appModal').classList.add('open');
+}
+
+function handleAddStudentSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById('newStudentName').value.trim();
+  const grade = document.getElementById('newStudentGrade').value;
+  const avatar = document.getElementById('newStudentAvatar').value;
+  const before = Number(document.getElementById('newStudentBefore').value);
+  const after = Number(document.getElementById('newStudentAfter').value);
+  const note = document.getElementById('newStudentNote').value.trim();
+
+  const newId = 'st_' + Date.now();
+  const newStudent = {
+    id: newId,
+    name,
+    grade,
+    avatar,
+    stars: 120,
+    mentorNote: note,
+    supportStatus: 'Жаңа диагностика (Оң серпін +' + Math.max(0, after - before) + '%)',
+    skills: [
+      { name: 'Оқылым және мәнерлеп оқу', before, after },
+      { name: 'Мәтінді түсіну және талдау', before: Math.max(30, before - 4), after: Math.min(100, after - 2) },
+      { name: 'Екі амалмен есеп шығару', before: Math.max(30, before - 6), after: Math.min(100, after - 3) },
+      { name: 'Көбейту және бөлу кестесі', before: Math.max(35, before - 2), after: Math.min(100, after) }
+    ],
+    badges: [
+      { icon: '🏆', title: 'Математика шебері', desc: 'Жеке жоспарды орындады', earned: true },
+      { icon: '🦸‍♂️', title: 'Оқымысты суперқаһарман', desc: 'Оқылым нормасын асырды', earned: true },
+      { icon: '🌟', title: 'Алтын Қалам', desc: 'Сауатты жазу шебері', earned: after >= 80 },
+      { icon: '🔬', title: 'Жас Зерттеуші', desc: 'Жобалық жұмыс', earned: false }
+    ]
+  };
+
+  appState.students.unshift(newStudent);
+  selectedStudentId = newId;
+  saveState();
+  closeModal();
+  renderStudentPassport();
+  switchSection('sec-passport');
+  showToast(`🎉 ${name} «Өсу траекториясы» базасына сәтті қосылды!`);
+}
+
+function closeModal() {
+  document.getElementById('appModal').classList.remove('open');
+}
+
+// ДЕМО ПРЕЗЕНТАЦИЯ РЕЖИМІ (ҚАЗЫЛАР АЛҚАСЫНА АРНАЛҒАН)
+function triggerJuryDemoMode() {
+  showToast('✨ Қазылар алқасына арналған Демо-таныстырылым режимі іске қосылды!');
+  const g = appState.grades[appState.currentGrade];
+  if (g && g.quality < 88) {
+    g.quality += 2;
+    g.starsCollected += 25;
+  }
+  renderDashboard();
+  renderMonitoringSection();
+}
+
+function resetDemoData() {
+  localStorage.removeItem(STORAGE_KEY);
+  appState = JSON.parse(JSON.stringify(defaultPlatformData));
+  selectedStudentId = appState.students[0].id;
+  selectGrade(3);
+  renderGapsSection();
+  renderStudentPassport();
+  showToast('🔄 Бастапқы демо деректер қалпына келтірілді!');
+}
+
+function showToast(message) {
+  const container = document.getElementById('toastContainer');
+  if (!container) return;
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `<span>${message}</span>`;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    setTimeout(() => toast.remove(), 300);
+  }, 3500);
+}
+
+// Бет жүктелгенде барлық модульдерді іске қосу
+document.addEventListener('DOMContentLoaded', () => {
+  renderDashboard();
+  renderMonitoringSection();
+  renderTrafficLightSection();
+  renderGapsSection();
+  renderStudentPassport();
+});
+
+</script>
+</body>
+</html>
+
